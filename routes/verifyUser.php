@@ -21,7 +21,7 @@
 
         $userSend['emaila']       = "";
         $userSend['pasahitza']   = "";
-        $userSend['error']      = "";
+        // $userSend['error']      = "";
 
         if ($mail == "" ||$pasahitza == "")
         {
@@ -31,7 +31,7 @@
         
         else
         {
-            // echo "Entra en Else";
+            
             //Buscamos el elemento de la tabla USERS
             $resultArray = $user->getAllBy2Columns("emaila", $mail, "pasahitza", $pasahitza);
 
