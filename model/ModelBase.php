@@ -51,6 +51,18 @@ class ModelBase extends Conexion
         return $array;
     }
 
+    function getUsers()
+    {
+        $query = $this->selectErabiltzaileDB();
+        $result = $this->conexion->query($query);
+
+        // Creamos el array asociativo para devolverlos datos
+        $array= $this->createArray($result);
+
+        $result->close();
+        
+        return $array;
+    }
 
     // Función que añade un elemento nuevo a la tabla 
     function addNew($array) 
@@ -106,6 +118,14 @@ class ModelBase extends Conexion
 
             // echo $query;
             return $query;
+    }
+
+    protected function selectErabiltzaileDB()
+    {
+        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail;";
+
+        // echo $query;
+        return $query;
     }
 
     // Devuelve un Query de la forma "INSERT INTO table (author, title, category) VALUES ('JRR tolkien', 'Lord of the rings', 'Fiction')"
