@@ -9,6 +9,7 @@ $conexion: OBjeto de la clase conexion. Se usara para interactuar con la BD */
 
 require_once (__DIR__."/../db/Conexion.php");
 
+
 class ModelBase extends Conexion 
 {
     protected $conexion;
@@ -53,7 +54,7 @@ class ModelBase extends Conexion
 
     function getUsers()
     {
-        $query = $this->selectErabiltzaileDB();
+        $query = $this->selectErabiltzaileDB($this->$mail);
         $result = $this->conexion->query($query);
 
         // Creamos el array asociativo para devolverlos datos
@@ -120,9 +121,10 @@ class ModelBase extends Conexion
             return $query;
     }
 
-    protected function selectErabiltzaileDB()
+    protected function selectErabiltzaileDB($mail)
     {
-        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail;";
+        // echo $mail;
+        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail";
 
         // echo $query;
         return $query;
@@ -172,27 +174,26 @@ class ModelBase extends Conexion
 
     function getAllBy2Columns($search_name1, $search_value1, $search_name2, $search_value2)
     {
-        // echo "entra getAllBy2Column";
         $query = $this->selectDBMultiple($this->table_name, "*", $search_name1, $search_value1, $search_name2, $search_value2);
-        // echo $query;
         $result = $this->conexion->query($query);
 
         //Creamos el array asociativo para devolver los datos
         $array = $this->createArray($result);
+
         $result->close();
         return $array;
     }
 
     protected function selectDBMultiple($table, $columns = "*", $name1 = "", $value1 = "", $name2 = "", $value2 = "" )
     {
-        // echo "entra en SelectDBMultiple";
+        // echo $table;
         $query = "SELECT $columns FROM $table";
         if( $name1 != "" && $value1 != "")
             $query .= " WHERE $name1 = '$value1'";
         if( $name2 != "" && $value2 != "")
             $query .= " AND $name2 = '$value2'";
 
-        // echo $query;
+        //echo $query;
         return $query;
     }
 
