@@ -65,6 +65,21 @@ class ModelBase extends Conexion
         return $array;
     }
 
+    function getAllUsers()
+    {
+        $query = $this->selectAllUsersDB($this->table_name);
+        
+        // echo "Table name: " . $this->table_name;
+        $result = $this->conexion->query($query);
+        
+        // Creamos el array asociativo para devolver los datos
+        $array = $this->createArray($result);
+   
+
+        $result->close();
+        return $array;
+    }
+
     // Función que añade un elemento nuevo a la tabla 
     function addNew($array) 
     {
@@ -128,6 +143,18 @@ class ModelBase extends Conexion
 
         // echo $query;
         return $query;
+    }
+
+    protected function selectAllUsersDB($table, $columns = "*", $name = "", $value = "")
+    {
+        // echo "entra";
+        
+        $query = "SELECT $columns FROM $table";
+        if( $name != "" && $value != "")
+            $query .= " WHERE $name = '$value'";
+
+            // echo $query;
+            return $query;
     }
 
     // Devuelve un Query de la forma "INSERT INTO table (author, title, category) VALUES ('JRR tolkien', 'Lord of the rings', 'Fiction')"

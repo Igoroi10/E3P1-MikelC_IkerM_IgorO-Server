@@ -11,4 +11,10 @@
     //Creamos nuestros modelos
     $user = new User();
 
+    //USUARIOS
+    require_once (__DIR__."/../model/AllUsers.php");
+
+    //Creamos nuestros modelos
+    $allUsers = new AllUsers();
+
 ?>
