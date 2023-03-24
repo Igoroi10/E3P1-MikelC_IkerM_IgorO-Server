@@ -1,19 +1,29 @@
 <?php
 
-    require_once(__DIR__."../functions.php");
+    require_once(__DIR__."/../functions.php");
     require_once (__DIR__."/../controller/Controller.php");
 
-    //Verificamos que se hayan enviado las variables 'name' y 'last_name' a trabés del formulario
-    if(isset($_POST['name']) && isset($_POST['lastName']))
+    //Verificamos que se hayan enviado las variables 'name' y 'pasahitza' a trabés del formulario
+
+    //TEST OIST ROUTE QUITAR OISTERIORMENTE
+    $_POST['emaila']          = 'iker.mendoza@ikasle.aeg.eus';
+    $_POST['pasahitza']      = '$2y$10$kSL/Yle4VVBAQa8a0TypYeiJzNk8aqGAiy/7zHx30KELBYXyQy9vu';
+
+
+    if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
     {
-        $name           = sanitizeString($_POST['name']);
-        $last_name      = sanitizeString($_POST['lastName']);
+        // echo "entra en UserVerify";
+        $mail           = sanitizeString($_POST['emaila']);
+        $pasahitza      = sanitizeString($_POST['pasahitza']);
 
-        $userSend['name']       = "";
-        $userSend['lastName']   = "";
-        $userSend['error']      = "";
+        // echo $mail;
+        // echo $pasahitza;
 
-        if ($name == "" ||$last_name == "")
+        $userSend['emaila']       = "";
+        $userSend['pasahitza']   = "";
+        // $userSend['error']      = "";
+
+        if ($mail == "" ||$pasahitza == "")
         {
             //Error. No se ha insertado todos los campos
             $userSend['error'] = "Not all the fields were entered";
@@ -21,21 +31,23 @@
         
         else
         {
+            
             //Buscamos el elemento de la tabla USERS
-            $resultArray = $user->getAllBy2Columns("name", $name, "last_name", $last_name);
+            $resultArray = $user->getAllBy2Columns("emaila", $mail, "pasahitza", $pasahitza);
 
             if($resultArray == null)
             {
+                // echo "entra if";
                 //Usuario no encontrado en la base de datos
-                $yserSend['error'] = "Invalid loggin attempt";
+                $userSend['error'] = "Invalid loggin attempt";
             }
             else
             {
+                // echo "entra else";
                 //Si el usuario esta en la base de datos lo guardamos
-                $userSend['name']           =$name;
-                $userSend['lastName']       =$last_name;
+                $userSend['emaila']           =$mail;
+                $userSend['pasahitza']        =$pasahitza;
             }
-
 
         }
 

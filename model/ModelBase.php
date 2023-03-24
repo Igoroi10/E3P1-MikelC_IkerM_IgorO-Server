@@ -9,6 +9,7 @@ $conexion: OBjeto de la clase conexion. Se usara para interactuar con la BD */
 
 require_once (__DIR__."/../db/Conexion.php");
 
+
 class ModelBase extends Conexion 
 {
     protected $conexion;
@@ -51,6 +52,18 @@ class ModelBase extends Conexion
         return $array;
     }
 
+    function getUsers()
+    {
+        $query = $this->selectErabiltzaileDB($this->$mail);
+        $result = $this->conexion->query($query);
+
+        // Creamos el array asociativo para devolverlos datos
+        $array= $this->createArray($result);
+
+        $result->close();
+        
+        return $array;
+    }
 
     // Función que añade un elemento nuevo a la tabla 
     function addNew($array) 
@@ -106,6 +119,15 @@ class ModelBase extends Conexion
 
             // echo $query;
             return $query;
+    }
+
+    protected function selectErabiltzaileDB($mail)
+    {
+        // echo $mail;
+        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail";
+
+        // echo $query;
+        return $query;
     }
 
     // Devuelve un Query de la forma "INSERT INTO table (author, title, category) VALUES ('JRR tolkien', 'Lord of the rings', 'Fiction')"
@@ -164,6 +186,7 @@ class ModelBase extends Conexion
 
     protected function selectDBMultiple($table, $columns = "*", $name1 = "", $value1 = "", $name2 = "", $value2 = "" )
     {
+        // echo $table;
         $query = "SELECT $columns FROM $table";
         if( $name1 != "" && $value1 != "")
             $query .= " WHERE $name1 = '$value1'";
