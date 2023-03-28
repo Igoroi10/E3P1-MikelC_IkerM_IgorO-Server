@@ -1,13 +1,13 @@
 <?php
 
-    require_once(__DIR__."/../functions.php");
+    require_once(__DIR__."/../routes/functions.php");
     require_once (__DIR__."/../controller/Controller.php");
 
     //Verificamos que se hayan enviado las variables 'name' y 'pasahitza' a trabés del formulario
 
     //TEST OIST ROUTE QUITAR OISTERIORMENTE
-    $_POST['emaila']          = 'iker.mendoza@ikasle.aeg.eus';
-    $_POST['pasahitza']      = '$2y$10$kSL/Yle4VVBAQa8a0TypYeiJzNk8aqGAiy/7zHx30KELBYXyQy9vu';
+    // $_POST['emaila']          = 'iker.mendoza@ikasle.aeg.eus';
+    // $_POST['pasahitza']      = '$2y$10$kSL/Yle4VVBAQa8a0TypYeiJzNk8aqGAiy/7zHx30KELBYXyQy9vu';
 
 
     if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
@@ -23,7 +23,7 @@
         $userSend['pasahitza']   = "";
         // $userSend['error']      = "";
 
-        if ($mail == "" ||$pasahitza == "")
+        if ($mail == "" || $pasahitza == "")
         {
             //Error. No se ha insertado todos los campos
             $userSend['error'] = "Not all the fields were entered";
@@ -33,7 +33,7 @@
         {
             
             //Buscamos el elemento de la tabla USERS
-            $resultArray = $user->getAllBy2Columns("emaila", $mail, "pasahitza", $pasahitza);
+            $resultArray = $user->getAllBy2Columns("emaila", $mail);
 
             if($resultArray == null)
             {
@@ -45,8 +45,21 @@
             {
                 // echo "entra else";
                 //Si el usuario esta en la base de datos lo guardamos
-                $userSend['emaila']           =$mail;
-                $userSend['pasahitza']        =$pasahitza;
+                if (password_verify($pasahitza, $resultArray[0]['pasahitza'])) {
+                    // echo '¡La contraseña es válida!';
+                    $userSend['emaila']                  =$mail;
+                    // $userSend['pasahitza']        =$pasahitza;
+                
+                    $userSend['izena_abizena']           =$resultArray[0]['izen_abizena'];
+                    $userSend['rol']                     =$resultArray[0]['rol'];
+                    
+                }
+
+                else
+                {
+                    echo 'Contraseña no Valida';
+                }
+
             }
 
         }

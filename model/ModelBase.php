@@ -199,9 +199,9 @@ class ModelBase extends Conexion
         return $query;
     }
 
-    function getAllBy2Columns($search_name1, $search_value1, $search_name2, $search_value2)
+    function getAllBy2Columns($search_name1, $search_value1)
     {
-        $query = $this->selectDBMultiple($this->table_name, "*", $search_name1, $search_value1, $search_name2, $search_value2);
+        $query = $this->selectDBMultiple($this->table_name, "*", $search_name1, $search_value1);
         $result = $this->conexion->query($query);
 
         //Creamos el array asociativo para devolver los datos
@@ -211,14 +211,14 @@ class ModelBase extends Conexion
         return $array;
     }
 
-    protected function selectDBMultiple($table, $columns = "*", $name1 = "", $value1 = "", $name2 = "", $value2 = "" )
+    protected function selectDBMultiple($table, $columns = "*", $name1 = "", $value1 = "" )
     {
         // echo $table;
         $query = "SELECT $columns FROM $table";
         if( $name1 != "" && $value1 != "")
             $query .= " WHERE $name1 = '$value1'";
-        if( $name2 != "" && $value2 != "")
-            $query .= " AND $name2 = '$value2'";
+        // if( $name2 != "" && $value2 != "")
+        //     $query .= " AND $name2 = '$value2'";
 
         //echo $query;
         return $query;
