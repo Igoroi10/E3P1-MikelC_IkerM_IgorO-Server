@@ -96,6 +96,7 @@ class ModelBase extends Conexion
     protected function createArray($data)
     {
 
+        $array = [];
         // Creamos el array asociativo para devolver los datos
         while($row = $data->fetch_array(MYSQLI_ASSOC))
         {
