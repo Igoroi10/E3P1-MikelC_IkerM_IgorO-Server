@@ -140,7 +140,7 @@ class ModelBase extends Conexion
     protected function selectErabiltzaileDB($mail)
     {
         // echo $mail;
-        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail order by izen_abizena";
+        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak order by izen_abizena where emaila = $mail ";
 
         // echo $query;
         return $query;
@@ -225,6 +225,14 @@ class ModelBase extends Conexion
         return $query;
     }
 
+    protected function alterPassword(){
+
+        $query = "UPDATE $table set pasahitza = $pasahitza where emaila = $emaila";
+        $result = $this->conexion->query($query);
+
+
+        $result->close();
+    }
 }
 
 ?>
