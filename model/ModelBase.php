@@ -140,7 +140,7 @@ class ModelBase extends Conexion
     protected function selectErabiltzaileDB($mail)
     {
         // echo $mail;
-        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail";
+        $query = "SELECT rol, irudia, izen_abizena, pasahitza, emaila from erabiltzaileak where emaila = $mail order by izen_abizena";
 
         // echo $query;
         return $query;
