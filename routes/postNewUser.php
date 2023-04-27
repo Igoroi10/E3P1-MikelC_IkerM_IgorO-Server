@@ -3,9 +3,9 @@
 require_once (__DIR__."/../controller/Controller.php");
 
 
-// $_POST['emaila']                = 'mikel.gurutze@ikasle.aeg.eus';
-// $_POST['pasahitza']             = 'querty123';
-// $_POST['izen_abizena']          = 'Mikel gurutze';
+$_POST['emaila']                = 'mikel.gurutze2134@ikasle.aeg.eus';
+$_POST['pasahitza']             = 'querty123';
+$_POST['izen_abizena']          = 'Mikel gurutze';
 
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
@@ -20,7 +20,7 @@ if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
     //Añadimos el nuevo objeto a la BD
     $mailCheck =  $user->checkIfMailExists($result['emaila']);
 
-    if($mailCheck[0] == "")
+    if(empty($mailCheck))
     {       
         // echo "Mail disponible";
 
@@ -34,7 +34,7 @@ if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
     }
     else
     {
-        $userSend['message'] = 'Invalid loggin attempt';
+        $userSend['message'] = 'Invalid register attempt';
     }
 
     echo json_encode($userSend);
