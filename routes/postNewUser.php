@@ -13,14 +13,16 @@ if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
     
 
     //Añadimos el nuevo objeto a la BD
-    $returnValue = $user->insertUser($newUser, $password, $izen_abizena);
+    $returnValue = $user->comprobeIfMailExists($newUser, $password, $izen_abizena);
 
     if($returnValue == FALSE)
     {
+        countUsers($usuario, $pasahitza,  $izen_abizena);
         echo "Error en la introduccion de nuevo elemento en la BD";
     }
     else
     {
+
         //Devolvemos el resultado añadido de la BD como JSON
         echo json_encode($newUser);
     }

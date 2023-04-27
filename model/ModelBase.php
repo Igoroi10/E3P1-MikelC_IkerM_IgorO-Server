@@ -247,24 +247,25 @@ class ModelBase extends Conexion
 }
 
 function comprobeIfMailExists($emaila, $pasahitza, $izen_abizena){
-    $query = "select emaila from erabiltzaileak where emaila = '$emaila'";
-    // $result = $this->$
+    $query = "SELECT emaila from erabiltzaileak where emaila = '$emaila'";
+
+    $result = $this->conexion->query($query);
 
     //si hay algun email llamamos a countUsers pasando los argumentos sino tiene que devolver un error 
 }
 
-// function countUsers($emaila, $pasahitza, $izen_abizena){
-//     $query = "select count(user_kod) from erabiltzaileak;"
-//     $result = $this->conexion->query($query);
+function countUsers($emaila, $pasahitza, $izen_abizena){
+    $query = "SELECT count(user_kod) from erabiltzaileak";
+    
+    $result = $this->conexion->query($query);
 
-
-//     $result->close();
-// }
+    $result->close();
+}
 
 
 function insertUser($emaila, $pasahitza, $izen_abizena, $zenbakia){
 
-    $query = "insert into erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) values (usr$zenbakia, player, $izen_abizena, $emaila);";
+    $query = "INSERT INTO erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) VALUES (usr$zenbakia, player, $izen_abizena, $emaila);";
     $result = $this->conexion->query($query);
 
 
