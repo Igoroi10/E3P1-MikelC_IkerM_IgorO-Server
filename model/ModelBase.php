@@ -225,7 +225,7 @@ class ModelBase extends Conexion
         return $query;
     }
 
-    protected function alterPassword(){
+    protected function alterPassword($table, $emaila, $pasahitza){
 
         $query = "UPDATE $table set pasahitza = $pasahitza where emaila = $emaila";
         $result = $this->conexion->query($query);
@@ -235,4 +235,12 @@ class ModelBase extends Conexion
     }
 }
 
+function insertUser($emaila, $pasahitza, $izen_abizena, $zenbakia){
+
+    $query = "insert into erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) values (usr00$zenbakia, player, $izen_abizena, $emaila);";
+    $result = $this->conexion->query($query);
+
+
+    $result->close();
+}
 ?>

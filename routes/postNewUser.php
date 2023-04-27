@@ -6,12 +6,14 @@ require_once (__DIR__."/../controller/Controller.php");
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
 {
-    $user['emaila']       = $_POST['emaila'];
-    $pasahitza['pasahitza']    = $_POST['pasahitza'];
+    $newUser['emaila']              = $_POST['emaila'];
+    $password['pasahitza']          = $_POST['pasahitza'];
+    $izen_abizena['izen_abizena']   = $_POST['izen_abizena'];
+    $zenbakia['zenbakia']           = $_POST['zenbakia'];
     
 
     //Añadimos el nuevo objeto a la BD
-    $returnValue = $user->alterPassword($user, $pasahitza);
+    $returnValue = $user->insertUser($newUser, $password, $izen_abizena);
 
     if($returnValue == FALSE)
     {
