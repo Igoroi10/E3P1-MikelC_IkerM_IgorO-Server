@@ -6,26 +6,31 @@ require_once (__DIR__."/../controller/Controller.php");
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
 {
-    $newUser['emaila']              = $_POST['emaila'];
+    $user_mail['emaila']              = $_POST['emaila'];
     $password['pasahitza']          = $_POST['pasahitza'];
-    $izen_abizena['izen_abizena']   = $_POST['izen_abizena'];
-    $zenbakia['zenbakia']           = $_POST['zenbakia'];
-    
+    $name['izen_abizena']           = $_POST['izen_abizena'];
+
+    $userSend = "";
 
     //Añadimos el nuevo objeto a la BD
-    $returnValue = $user->comprobeIfMailExists($newUser, $password, $izen_abizena);
+    $mailCheck = $user->comprobeIfMailExists($user_mail);
 
-    if($returnValue == FALSE)
+    if($mailCheck == "")
     {
-        countUsers($usuario, $pasahitza,  $izen_abizena);
+        $user_num = countUsers();
         echo "Error en la introduccion de nuevo elemento en la BD";
+
+        $returnValue = $user -> insertUser($user_mail, $password, $name, $user_num);   
+        
+        $userSend['message'] = "user registered succesfully"
+
     }
     else
     {
-
-        //Devolvemos el resultado añadido de la BD como JSON
-        echo json_encode($newUser);
+        $userSend['message'] = "Invalid loggin attempt";
     }
+
+    echo json_encode($userSend);
 }
 else
 {
