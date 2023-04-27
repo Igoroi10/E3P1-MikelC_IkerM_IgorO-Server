@@ -6,8 +6,8 @@
     //Verificamos que se hayan enviado las variables 'name' y 'pasahitza' a trabés del formulario
 
     //TEST OIST ROUTE QUITAR OISTERIORMENTE
-    // $_POST['emaila']          = 'iker.mendoza@ikasle.aeg.eus';
-    // $_POST['pasahitza']      = '$2y$10$kSL/Yle4VVBAQa8a0TypYeiJzNk8aqGAiy/7zHx30KELBYXyQy9vu';
+    $_POST['emaila']          = 'iker.mendoza@ikasle.aeg.eus';
+    $_POST['pasahitza']      = '$2y$10$kSL/Yle4VVBAQa8a0TypYeiJzNk8aqGAiy/7zHx30KELBYXyQy9vu';
 
 
     if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
@@ -16,7 +16,7 @@
         $mail           = sanitizeString($_POST['emaila']);
         $pasahitza      = sanitizeString($_POST['pasahitza']);
 
-        // echo $mail;
+        echo $mail;
         // echo $pasahitza;
 
         $userSend['emaila']       = "";

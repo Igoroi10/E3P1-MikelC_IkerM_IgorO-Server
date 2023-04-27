@@ -212,6 +212,19 @@ class ModelBase extends Conexion
         return $array;
     }
 
+    function getAllByColumn($search_name, $search_value)
+        {
+            $query = $this->selectDB($this->table_name, "*", $search_name, $search_value);
+            $result = $this->conexion->query($query);
+            
+            //Creamos al array asociativo para devolver los datos
+            $array = $this->createArray($result);
+
+
+            $result->close();
+            return $array;
+        }
+        
     protected function selectDBMultiple($table, $columns = "*", $name1 = "", $value1 = "" )
     {
         // echo $table;
@@ -225,13 +238,13 @@ class ModelBase extends Conexion
         return $query;
     }
 
-    protected function alterPassword(){
+    function alterPassword($usuario, $pasahitza){
 
-        $query = "UPDATE $table set pasahitza = $pasahitza where emaila = $emaila";
+        $query = "UPDATE $this->table_name set pasahitza = '$pasahitza' where emaila = '$usuario'";
+
         $result = $this->conexion->query($query);
 
 
-        $result->close();
     }
 }
 
