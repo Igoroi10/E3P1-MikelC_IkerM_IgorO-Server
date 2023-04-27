@@ -3,9 +3,9 @@
 require_once (__DIR__."/../controller/Controller.php");
 
 
-$_POST['emaila']                = 'mikel.gurutze2134@ikasle.aeg.eus';
-$_POST['pasahitza']             = 'querty123';
-$_POST['izen_abizena']          = 'Mikel gurutze';
+// $_POST['emaila']                = 'mikel.gurutze2134@ikasle.aeg.eus';
+// $_POST['pasahitza']             = 'querty123';
+// $_POST['izen_abizena']          = 'Mikel gurutze';
 
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
