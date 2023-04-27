@@ -7,7 +7,7 @@ require_once (__DIR__."/../controller/Controller.php");
 
 //TEST OIST ROUTE QUITAR OISTERIORMENTE
 $_POST['emaila']          = 'iker.mendoza@ikasle.aeg.eus';
-$_POST['pasahitza']      = '1254';
+$_POST['pasahitza']      = '1222222244';
 
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))

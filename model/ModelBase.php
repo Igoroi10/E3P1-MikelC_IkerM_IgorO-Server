@@ -243,9 +243,31 @@ class ModelBase extends Conexion
         $query = "UPDATE $this->table_name set pasahitza = '$pasahitza' where emaila = '$usuario'";
 
         $result = $this->conexion->query($query);
-
-
     }
 }
 
+function comprobeIfMailExists($emaila, $pasahitza, $izen_abizena){
+    $query = "select emaila from erabiltzaileak where emaila = '$emaila'";
+    // $result = $this->$
+
+    //si hay algun email llamamos a countUsers pasando los argumentos sino tiene que devolver un error 
+}
+
+// function countUsers($emaila, $pasahitza, $izen_abizena){
+//     $query = "select count(user_kod) from erabiltzaileak;"
+//     $result = $this->conexion->query($query);
+
+
+//     $result->close();
+// }
+
+
+function insertUser($emaila, $pasahitza, $izen_abizena, $zenbakia){
+
+    $query = "insert into erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) values (usr$zenbakia, player, $izen_abizena, $emaila);";
+    $result = $this->conexion->query($query);
+
+
+    $result->close();
+}
 ?>
