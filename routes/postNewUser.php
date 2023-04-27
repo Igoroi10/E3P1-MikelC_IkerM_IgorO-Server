@@ -3,31 +3,38 @@
 require_once (__DIR__."/../controller/Controller.php");
 
 
+// $_POST['emaila']                = 'mikel.gurutze@ikasle.aeg.eus';
+// $_POST['pasahitza']             = 'querty123';
+// $_POST['izen_abizena']          = 'Mikel gurutze';
+
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
 {
-    $user_mail['emaila']              = $_POST['emaila'];
-    $password['pasahitza']          = $_POST['pasahitza'];
-    $name['izen_abizena']           = $_POST['izen_abizena'];
+    $result['emaila']           = $_POST['emaila'];
+    $result['pasahitza']        = $_POST['pasahitza'];
+    $result['izen_abizena']     = $_POST['izen_abizena'];
+    $result['rol']              = 'player';
 
-    $userSend = "";
+    $userSend['message'] = "";
 
     //Añadimos el nuevo objeto a la BD
-    $mailCheck = $user->comprobeIfMailExists($user_mail);
+    $mailCheck =  $user->checkIfMailExists($result['emaila']);
 
-    if($mailCheck == "")
-    {
-        $user_num = countUsers();
-        echo "Error en la introduccion de nuevo elemento en la BD";
+    if($mailCheck[0] == "")
+    {       
+        // echo "Mail disponible";
 
-        $returnValue = $user -> insertUser($user_mail, $password, $name, $user_num);   
+        $hash = password_hash($result['pasahitza'], PASSWORD_DEFAULT);
+        $result['pasahitza'] = $hash;
+
+        $returnValue = $user-> addNew($result);   
         
-        $userSend['message'] = "user registered succesfully"
+        $userSend['message'] = 'user registered succesfully';
 
     }
     else
     {
-        $userSend['message'] = "Invalid loggin attempt";
+        $userSend['message'] = 'Invalid loggin attempt';
     }
 
     echo json_encode($userSend);

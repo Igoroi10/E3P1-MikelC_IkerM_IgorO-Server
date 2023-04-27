@@ -6,8 +6,8 @@ require_once (__DIR__."/../controller/Controller.php");
 //Verificamos que se hayan enviado las variables 'name' y 'pasahitza' a trabés del formulario
 
 //TEST OIST ROUTE QUITAR OISTERIORMENTE
-$_POST['emaila']          = 'mikel.cruz@ikasle.aeg.eus';
-$_POST['pasahitza']      = 'querty123';
+// $_POST['emaila']          = 'mikel.cruz@ikasle.aeg.eus';
+// $_POST['pasahitza']      = 'querty123';
 
 
 if(isset($_POST['emaila']) && isset($_POST['pasahitza']))

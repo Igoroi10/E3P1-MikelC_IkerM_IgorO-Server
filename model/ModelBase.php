@@ -244,31 +244,34 @@ class ModelBase extends Conexion
 
         $result = $this->conexion->query($query);
     }
-}
 
-function comprobeIfMailExists($emaila, $pasahitza, $izen_abizena){
-    $query = "SELECT emaila from erabiltzaileak where emaila = '$emaila'";
-
-    $result = $this->conexion->query($query);
-
-    //si hay algun email llamamos a countUsers pasando los argumentos sino tiene que devolver un error 
-}
-
-function countUsers($emaila, $pasahitza, $izen_abizena){
-    $query = "SELECT count(user_kod) from erabiltzaileak";
+    function checkIfMailExists($emaila){
+        $query = "SELECT emaila from erabiltzaileak where emaila = '$emaila'";
     
-    $result = $this->conexion->query($query);
+        $result = $this->conexion->query($query);
 
-    $result->close();
+        $array = $this->createArray($result);
+
+        return $array;
+    
+        //si hay algun email llamamos a countUsers pasando los argumentos sino tiene que devolver un error 
+    }
+    
+
+    
+    function insertUser($emaila, $pasahitza, $izen_abizena, $zenbakia){
+        
+        echo "principio de insertUser";
+
+        $num = $zenbakia[0];
+    
+        $query = "INSERT INTO erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) VALUES ('usr00$num', 'player', '$izen_abizena', '$emaila')";
+        $result = $this->conexion->query($query);
+    
+        echo "fin de insert user";
+
+    }
 }
 
 
-function insertUser($emaila, $pasahitza, $izen_abizena, $zenbakia){
-
-    $query = "INSERT INTO erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) VALUES (usr$zenbakia, player, $izen_abizena, $emaila);";
-    $result = $this->conexion->query($query);
-
-
-    $result->close();
-}
 ?>
