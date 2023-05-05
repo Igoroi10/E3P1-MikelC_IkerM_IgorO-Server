@@ -261,17 +261,21 @@ class ModelBase extends Conexion
     
     function insertUser($emaila, $pasahitza, $izen_abizena, $zenbakia){
         
-        echo "principio de insertUser";
 
         $num = $zenbakia[0];
     
         $query = "INSERT INTO erabiltzaileak(user_kod,rol,izen_abizena,pasahitza,emaila) VALUES ('usr00$num', 'player', '$izen_abizena', '$emaila')";
         $result = $this->conexion->query($query);
-    
-        echo "fin de insert user";
 
     }
+
+    function deleteUser($mail){
+        $query = "update $this->table_name set egoera = 0 where emaila = '$mail';";
+        $result = $this->conexion->query($query);
+        
+    }
 }
+
 
 
 ?>

@@ -3,11 +3,11 @@
 require_once (__DIR__."/../controller/Controller.php");
 
 //TEST OIST ROUTE QUITAR OISTERIORMENTE
-// $_POST['emaila']        = 'aimar.cascada@ikasle.aeg.eus';
+$_POST['emaila']        = 'aceituns@gmail.com';
 
-if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
+if(isset($_POST['emaila']))
 {
-    $userMail['emaila']       = $_POST['emaila'];
+    $userMail       = $_POST['emaila'];
     
 
     //Añadimos el nuevo objeto a la BD
@@ -15,12 +15,7 @@ if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
 
     if($returnValue == FALSE)
     {
-        echo "Error en el borrado de usuario";
-    }
-    else
-    {
-        //Devolvemos el resultado añadido de la BD como JSON
-        echo json_encode($newUser);
+        echo "Usuario borrado.";
     }
 }
 else
