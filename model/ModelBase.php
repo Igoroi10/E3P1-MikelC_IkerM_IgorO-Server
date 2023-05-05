@@ -228,9 +228,9 @@ class ModelBase extends Conexion
     protected function selectDBMultiple($table, $columns = "*", $name1 = "", $value1 = "" )
     {
         // echo $table;
-        $query = "SELECT $columns FROM $table";
+        $query = "SELECT $columns FROM $table where egoera = 1";
         if( $name1 != "" && $value1 != "")
-            $query .= " WHERE $name1 = '$value1'";
+            $query .= " AND $name1 = '$value1'";
         // if( $name2 != "" && $value2 != "")
         //     $query .= " AND $name2 = '$value2'";
 
