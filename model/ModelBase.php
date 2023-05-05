@@ -272,7 +272,12 @@ class ModelBase extends Conexion
     function deleteUser($mail){
         $query = "update $this->table_name set egoera = 0 where emaila = '$mail';";
         $result = $this->conexion->query($query);
-        
+
+    }
+
+    function deleteCard($card){
+        $query = "delete from $this->table_name where karta_kod = '$card';";
+        $result = $this->conexion->query($query);
     }
 }
 
