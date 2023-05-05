@@ -150,7 +150,7 @@ class ModelBase extends Conexion
     {
         // echo "entra";
         
-        $query = "SELECT $columns FROM $table";
+        $query = "SELECT $columns FROM $table where egoera = 1";
         if( $name != "" && $value != "")
             $query .= " WHERE $name = '$value'";
 
