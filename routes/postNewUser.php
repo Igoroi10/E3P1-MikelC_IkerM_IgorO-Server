@@ -14,6 +14,7 @@ if(isset($_POST['emaila']) && isset($_POST['pasahitza']))
     $result['pasahitza']        = $_POST['pasahitza'];
     $result['izen_abizena']     = $_POST['izen_abizena'];
     $result['rol']              = 'player';
+    $result['egoera']           = 1;
 
     $userSend['message'] = "";
 
