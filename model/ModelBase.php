@@ -279,6 +279,49 @@ class ModelBase extends Conexion
         $query = "delete from $this->table_name where karta_kod = '$card';";
         $result = $this->conexion->query($query);
     }
+
+    function insertCard($cardCode, $cardEffect, $cardValue, $cardType, $cardDescEu, $cardDescEn, $cardCategory, $cardName, $cardImg, $cardRarity){
+
+        $query = "insert into $this->table (karta_kod, kategoria, izena, irudia, urritasun_karta";
+
+        if($cardEffect != "")
+            $query .= ", efektua";
+        
+        if($cardValue != "")
+            $query .= ", balioa";
+
+        if($cardType != "")
+            $query .= ", mota";
+
+        if($cardDescEu != "")
+            $query .= ", deskribapena";
+    
+        if($cardDescEn!= "")
+            $query .= ", description";
+
+        $query .= ") values ('$cardCode', '$cardCategory', '$cardName', '$cardImg', '$cardRarity'"; 
+
+        if($cardEffect != "")
+            $query .= ", '$cardEffect'";
+        
+        if($cardValue != "")
+            $query .= ", '$cardValue'";
+
+        if($cardType != "")
+            $query .= ", '$cardType'";
+
+        if($cardDescEu != "")
+            $query .= ", '$cardDescEu'";
+    
+        if($cardDescEn!= "")
+            $query .= ", '$cardDescEn'";
+
+        $query .= ");";
+
+        $result = $this->conexion->query($query);
+
+    }
+
 }
 
 
