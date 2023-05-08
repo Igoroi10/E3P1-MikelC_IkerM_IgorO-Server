@@ -8,6 +8,7 @@ require_once (__DIR__."/../controller/Controller.php");
 if(isset($_POST['emaila']))
 {
     $userMail       = $_POST['emaila'];
+    $userSend['error'] = "";
     
 
     //Añadimos el nuevo objeto a la BD
@@ -15,7 +16,7 @@ if(isset($_POST['emaila']))
 
     if($returnValue == FALSE)
     {
-        echo "Usuario borrado.";
+        $userSend['error'] = "Usuario borrado.";
     }
 }
 else

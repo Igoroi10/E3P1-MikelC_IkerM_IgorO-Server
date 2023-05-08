@@ -13,6 +13,7 @@ $_POST['karta_kod']       = '01un01';
 $_POST['karta_kod']       = '01un01';
 $_POST['karta_kod']       = '01un01';
 $_POST['karta_kod']       = '01un01';
+$userSend['error'] = "";
 
 if(isset($_POST['karta_kod']))
 {
@@ -32,7 +33,7 @@ if(isset($_POST['karta_kod']))
 
     if($returnValue == FALSE)
     {
-        echo "Carta borrada.";
+        $userSend['error'] = echo "Carta borrada.";
     }
 }
 else
