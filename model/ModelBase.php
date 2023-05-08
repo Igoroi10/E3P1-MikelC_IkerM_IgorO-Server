@@ -322,6 +322,35 @@ class ModelBase extends Conexion
 
     }
 
+    function updatePlayer($rol, $newRol, $mail, $newMail, $name, $newName){
+        $query = "update $this->table_name set ";
+
+        if($rol != "")
+            $query .= "rola = $newRol, ";
+            
+        if($mail != "")
+            $query .= "emaila  = $newMail";
+
+        if($name != "")
+            $query .= "izen_abizena = $newName";
+
+        $query .= " where ";
+
+        if($rol != "")
+            $query .= "rola = $rol";
+
+        if($mail != "")
+            $query .= "emaila = $mail";
+
+        if($name != "")
+            $query .= "izen_abizena = $name";
+
+        $query .= ";";
+
+        $result = $this->conexion->query($query);
+
+    }
+
 }
 
 
