@@ -16,14 +16,14 @@ if(isset($_POST['rola']) || isset($_POST['emaila']) || isset($_POST['izen_abizen
     $mail           = $_POST['emaila'];
     $newMail        = $_POST['newEmaila'];
     $newName        = $_POST['newIzenAbizena'];
-    
+    $userSend['error'] = "";
 
     //Añadimos el nuevo objeto a la BD
     $returnValue = $user-> updatePlayer($newRol, $mail, $newMail, $newName);
 
     if($returnValue == FALSE)
     {
-        // echo "Usuario modificiado correctamente.";
+        $userSend['error'] =  "Usuario modificiado correctamente.";
     }
     echo json_encode($userSend);
 }
