@@ -3,7 +3,7 @@
 require_once (__DIR__."/../controller/Controller.php");
 
 //TEST OIST ROUTE QUITAR OISTERIORMENTE
-$_POST['karta_kod']       = '01un01';
+// $_POST['karta_kod']       = '01un01';
 
 if(isset($_POST['karta_kod']))
 {
@@ -15,8 +15,9 @@ if(isset($_POST['karta_kod']))
 
     if($returnValue == FALSE)
     {
-        $userSend['error'] = echo "Carta borrada.";
+        $userSend['error'] = "Carta borrada.";
     }
+    echo json_encode($userSend);
 }
 else
 {

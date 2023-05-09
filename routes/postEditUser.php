@@ -5,10 +5,10 @@ require_once (__DIR__."/../controller/Controller.php");
 //TEST OIST ROUTE QUITAR OISTERIORMENTE
 //ejemplo del update en mysql -> update erabiltzaileak set rol = 'admin' where emaila = 'iker.mendoza@ikasle.aeg.eus';
 
-    $_POST['newRola']          = "";
-    $_POST['emaila']           = "igor.ocon@ikasle.aeg.eus";
-    $_POST['newEmaila']        = "igoroi.ocon@ikasle.aeg.eus";   
-    $_POST['newIzenAbizena']   = "Igor Ocon2";
+    // $_POST['newRola']          = "";
+    // $_POST['emaila']           = "igor.ocon@ikasle.aeg.eus";
+    // $_POST['newEmaila']        = "igoroi.ocon@ikasle.aeg.eus";   
+    // $_POST['newIzenAbizena']   = "Igor Ocon2";
 
 if(isset($_POST['rola']) || isset($_POST['emaila']) || isset($_POST['izen_abizena']))
 {
@@ -25,6 +25,7 @@ if(isset($_POST['rola']) || isset($_POST['emaila']) || isset($_POST['izen_abizen
     {
         // echo "Usuario modificiado correctamente.";
     }
+    echo json_encode($userSend);
 }
 else
 {

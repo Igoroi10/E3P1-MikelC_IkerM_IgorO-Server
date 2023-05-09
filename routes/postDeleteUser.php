@@ -18,6 +18,7 @@ if(isset($_POST['emaila']))
     {
         $userSend['error'] = "Usuario borrado.";
     }
+    echo json_encode($userSend);
 }
 else
 {
