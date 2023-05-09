@@ -33,7 +33,7 @@ if(isset($_POST['karta_kod']))
 
     if($returnValue == FALSE)
     {
-        $userSend['error'] = echo "Carta borrada.";
+        $userSend['error'] = "Carta borrada.";
     }
 }
 else
