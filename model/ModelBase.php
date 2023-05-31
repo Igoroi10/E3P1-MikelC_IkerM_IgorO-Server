@@ -205,7 +205,7 @@ class ModelBase extends Conexion
         $query = $this->selectDBMultiple($this->table_name, "*", $search_name1, $search_value1);
         $result = $this->conexion->query($query);
 
-        //Creamos el array asociativo para devolver los datos
+        //Creamos el array asociativo para devolver los 
         $array = $this->createArray($result);
 
         $result->close();
@@ -217,7 +217,7 @@ class ModelBase extends Conexion
             $query = $this->selectDB($this->table_name, "*", $search_name, $search_value);
             $result = $this->conexion->query($query);
             
-            //Creamos al array asociativo para devolver los datos
+            //Creamos al array asociativo para devolver los 
             $array = $this->createArray($result);
 
 
@@ -344,6 +344,27 @@ class ModelBase extends Conexion
 
         $result = $this->conexion->query($query);
 
+    }
+
+    function playedGames()
+    {
+        $query = "SELECT count(partida_kod) from partida where partida_irabazlea = usr0001";
+
+        $result = $this->conexion->query($query);
+    }
+
+    function winrate($partidaIrabazlea)
+    {
+        $query = "select (select count(partida_irabazlea) from partida where partida_irabazlea = $partidaIrabazlea)* 100 /(select count(user_jolastu) from jolastu where user_jolastu = $partidaIrabazlea);";
+
+        $result = $this->conexion->query($query);
+    }
+    
+    function gamesWon($partidaIrabazlea)
+    {
+        $query = "select count(partida_kod) from partida where partida_irabazlea = $partidaIrabazlea;";
+
+        $result = $this->conexion->query($query);
     }
 
 }
