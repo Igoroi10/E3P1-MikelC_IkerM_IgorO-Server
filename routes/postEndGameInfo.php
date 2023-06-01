@@ -99,12 +99,16 @@ else
 // Jolastu
 if(isset($_POST['user_jolastu']) || isset($_POST['partida_jolastu']))
 {
-    $gamePlayer_game                     = $_POST['user_jolastu'];
-    $gamePlay_game                       = $_POST['partida_jolastu'];
-    $gameSend_game['error']              = "";
+    $gamePlay_game                          = $_POST['partida_jolastu'];
+
+    $gamePlayer1_game                       = $_POST['user_jolastu'];
+    $gamePlayer2_game                       = $_POST['user_jolastu'];
+    
+    $gameSend_game['error']                 = "";
 
     //Añadimos el nuevo objeto a la BD
-    $returnValue = $play-> insertJolastu($gamePlayer_game, $gamePlay_game);
+    $returnValue = $play-> insertJolastu($gamePlayer1_game, $gamePlay_game);
+    $returnValue = $play-> insertJolastu($gamePlayer2_game, $gamePlay_game);
 
     if($returnValue == FALSE)
     {

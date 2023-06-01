@@ -368,7 +368,7 @@ class ModelBase extends Conexion
     function insertJolastu($gamePlayer_game, $gamePlay_game)
     {
         // $query = "INSERT INTO partida where $gameWinner = 'BBBB'";
-        $query = "INSERT INTO jolastu(user_jolastu, partida_jolastu) VALUES ('$gamePlayer_game', '$gamePlay_game')";
+        $query = "INSERT INTO jolastu(user_jolastu, partida_jolastu) VALUES ('$gamePlayer_game', ' pkod_0000$gamePlay_game')";
 
         $result = $this->conexion->query($query);
 
