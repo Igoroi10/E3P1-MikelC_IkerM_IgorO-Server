@@ -346,6 +346,18 @@ class ModelBase extends Conexion
 
     }
 
+    function insertGame($gameWinner, $gameCode)
+    {
+        // $query = "INSERT INTO partida where $gameWinner = 'BBBB'";
+        $query = "INSERT INTO partida(partida_irabazlea, partida_kod) VALUES ('$gameWinner', '$gameCode')";
+
+        $result = $this->conexion->query($query);
+
+        return $result;
+    }
+
+
+
 }
 
 
