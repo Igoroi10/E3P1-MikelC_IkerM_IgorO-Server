@@ -6,7 +6,7 @@ require_once (__DIR__."/../controller/Controller.php");
 //ejemplo del update en mysql -> update erabiltzaileak set rol = 'admin' where emaila = 'iker.mendoza@ikasle.aeg.eus';
 
     $_POST['partida_irabazlea']             = 4; 
-    $_POST['partida_kod']                   = "pkod_00008";
+    $_POST['partida_kod']                   = "8";
 
     // $_POST['newEmaila']        = "igoroi.ocon@ikasle.aeg.eus";   
     // $_POST['newIzenAbizena']   = "Igor Ocon2";
@@ -15,10 +15,11 @@ require_once (__DIR__."/../controller/Controller.php");
     $_POST['ronda_irabazlea']               = 8;
     $_POST['irabazlearen_puntuazioa']       = 100;   
     $_POST['galtzaidearen_puntuazioa']      = 33;
-    $_POST['partida_ronda']                 = "pkod_00008";
+    $_POST['partida_ronda']                 = "8";
+    // $_POST['partida_ronda']                 = "pkod_00008";
 
     $_POST['user_jolastu']                  = 8;
-    $_POST['partida_jolastu']               = "pkod_00008";
+    $_POST['partida_jolastu']               = "8";
 
 // Partida
 if( isset($_POST['partida_irabazlea']) || isset($_POST['partida_kod']))
@@ -47,17 +48,40 @@ else
 // //             RONDAS
 // //===================================
 
-if(isset($_POST['ronda_kod']) || isset($_POST['ronda_irabazlea']) || isset($_POST['irabazlearen_puntuazioa']) || isset($_POST['galtzaidearen_puntuazioa']) || isset($_POST['partida_ronda']))
+if(isset($_POST['ronda_irabazlea']) || isset($_POST['irabazlearen_puntuazioa']) || isset($_POST['galtzaidearen_puntuazioa']) || isset($_POST['partida_ronda']))
 { 
-    $roundCode                          = $_POST['ronda_kod'];
-    $roundWinner                        = $_POST['ronda_irabazlea'];
-    $winnerPoints                       = $_POST['irabazlearen_puntuazioa'];
-    $losserPoints                       = $_POST['galtzaidearen_puntuazioa'];
-    $gameRound                          = $_POST['partida_ronda'];
-    $roundSend['error']                 = "";
+    $gameRound                              = $_POST['partida_ronda'];
+
+    $roundWinner1                           = $_POST['ronda_irabazlea'];
+    $winnerPoints1                          = $_POST['irabazlearen_puntuazioa'];
+    $losserPoints1                          = $_POST['galtzaidearen_puntuazioa'];
+    
+
+    $roundWinner2                           = $_POST['ronda_irabazlea'];
+    $winnerPoints2                          = $_POST['irabazlearen_puntuazioa'];
+    $losserPoints2                          = $_POST['galtzaidearen_puntuazioa'];
+    
+
+    $roundWinner3                           = $_POST['ronda_irabazlea'];
+    $winnerPoints3                          = $_POST['irabazlearen_puntuazioa'];
+    $losserPoints3                          = $_POST['galtzaidearen_puntuazioa'];
+
+    // $roundWinner                            = $_POST['ronda_irabazlea'];
+    // $winnerPoints                           = $_POST['irabazlearen_puntuazioa'];
+    // $losserPoints                           = $_POST['galtzaidearen_puntuazioa'];
+    // $gameRound                              = $_POST['partida_ronda'];
+    // $roundSend['error']                     = "";
 
     //Añadimos el nuevo objeto a la BD
-    $returnValue = $round-> insertRound($roundCode, $roundWinner, $winnerPoints, $losserPoints, $gameRound);
+    $returnValue = $round-> insertRound(1, $roundWinner1, $winnerPoints1, $losserPoints1, $gameRound);
+    $returnValue = $round-> insertRound(2, $roundWinner2, $winnerPoints2, $losserPoints2, $gameRound);
+    
+    //Sentencia que guarda la tercera ronda en caso de que exista
+    if($winnerPoints3 != "" && $losserPoints3 != "")
+    {
+        $returnValue = $round-> insertRound(3, $roundWinner3, $winnerPoints3, $losserPoints3, $gameRound);
+    }
+   
 
     if($returnValue == FALSE)
     {
