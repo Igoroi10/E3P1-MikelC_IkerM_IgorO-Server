@@ -17,6 +17,9 @@ require_once (__DIR__."/../controller/Controller.php");
     $_POST['galtzaidearen_puntuazioa']      = 33;
     $_POST['partida_ronda']                 = "pkod_00008";
 
+    $_POST['user_jolastu']                  = 8;
+    $_POST['partida_jolastu']               = "pkod_00008";
+
 // Partida
 if( isset($_POST['partida_irabazlea']) || isset($_POST['partida_kod']))
 {
@@ -69,28 +72,26 @@ else
 
 
 
-// // Usuarios
-// if(isset($_POST['rola']) || isset($_POST['emaila']) || isset($_POST['izen_abizena']))
-// {
-//     $newRol                     = $_POST['newRola'];
-//     $mail                       = $_POST['emaila'];
-//     $newMail                    = $_POST['newEmaila'];
-//     $newName                    = $_POST['newIzenAbizena'];
-//     $userSend['error']          = "";
+// Jolastu
+if(isset($_POST['user_jolastu']) || isset($_POST['partida_jolastu']))
+{
+    $gamePlayer_game                     = $_POST['user_jolastu'];
+    $gamePlay_game                       = $_POST['partida_jolastu'];
+    $gameSend_game['error']              = "";
 
-//     //Añadimos el nuevo objeto a la BD
-//     $returnValue = $user-> updatePlayer($newRol, $mail, $newMail, $newName);
+    //Añadimos el nuevo objeto a la BD
+    $returnValue = $play-> insertJolastu($gamePlayer_game, $gamePlay_game);
 
-//     if($returnValue == FALSE)
-//     {
-//         $userSend['error'] =  "Usuario modificiado correctamente.";
-//     }
-//     echo json_encode($userSend);
-// }
-// else
-// {
-//     die("Forbidden");
-// }
+    if($returnValue == FALSE)
+    {
+        $gameSend_game['error'] =  "Informacion de juego correctamente enviada.";
+    }
+    echo json_encode($gameSend_game);
+}
+else
+{
+    die("Forbidden");
+}
 
 
 ?>
