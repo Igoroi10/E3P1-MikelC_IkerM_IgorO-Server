@@ -11,38 +11,39 @@ require_once (__DIR__."/../controller/Controller.php");
     // $_POST['newIzenAbizena']   = "Igor Ocon2";
 
 
-// Primer User
-if(isset($_POST['rola']) || isset($_POST['emaila']) || isset($_POST['izen_abizena']))
+// Partida
+if(isset($_POST['partida_kod']) ||  isset($_POST['partida_irabazlea']))
 {
-    $newRol         = $_POST['newRola'];
-    $mail           = $_POST['emaila'];
-    $newMail        = $_POST['newEmaila'];
-    $newName        = $_POST['newIzenAbizena'];
-    $userSend['error'] = "";
+    $gameWinner                     = $_POST['partida_irabazlea'];
+    $gameCode                       = $_POST['partida_kod'];
+
+    $gameErrorSend['error']         = "";
 
     //Añadimos el nuevo objeto a la BD
-    $returnValue = $user-> updatePlayer($newRol, $mail, $newMail, $newName);
+    $returnValue = $gameData-> updatePlayer($gameCode, $gameWinner);
 
     if($returnValue == FALSE)
     {
-        $userSend['error'] =  "Usuario modificiado correctamente.";
+        $gameErrorSend['error']     = "Error! Informacion invalida";
     }
-    echo json_encode($userSend);
+    echo json_encode($gameData);
 }
+
 else
 {
     die("Forbidden");
 }
 
 
+
 // Segundo User
-if(isset($_POST['rola']) || isset($_POST['']) || isset($_POST['izen_abizena']))
+if(isset($_POST['rola']) || isset($_POST['emaila']) || isset($_POST['izen_abizena']))
 {
-    $newRol         = $_POST['newRola'];
-    $mail           = $_POST['emaila'];
-    $newMail        = $_POST['newEmaila'];
-    $newName        = $_POST['newIzenAbizena'];
-    $userSend['error'] = "";
+    $newRol                     = $_POST['newRola'];
+    $mail                       = $_POST['emaila'];
+    $newMail                    = $_POST['newEmaila'];
+    $newName                    = $_POST['newIzenAbizena'];
+    $userSend['error']          = "";
 
     //Añadimos el nuevo objeto a la BD
     $returnValue = $user-> updatePlayer($newRol, $mail, $newMail, $newName);
