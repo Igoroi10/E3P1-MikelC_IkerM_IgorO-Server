@@ -19,7 +19,11 @@
 
 // GAME DATA
     require_once (__DIR__."/../model/GameData.php");
-    
+
     $gameData = new GameData();
 
+//ROUNDS
+    require_once (__DIR__."/../model/Round.php");
+
+    $round = new Round();
 ?>
