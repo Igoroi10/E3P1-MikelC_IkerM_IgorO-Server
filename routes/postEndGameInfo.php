@@ -11,6 +11,11 @@ require_once (__DIR__."/../controller/Controller.php");
     // $_POST['newEmaila']        = "igoroi.ocon@ikasle.aeg.eus";   
     // $_POST['newIzenAbizena']   = "Igor Ocon2";
 
+    $_POST['ronda_kod']                     = "rkod0008_1"; 
+    $_POST['ronda_irabazlea']               = 8;
+    $_POST['irabazlearen_puntuazioa']       = 100;   
+    $_POST['galtzaidearen_puntuazioa']      = 33;
+    $_POST['partida_ronda']                 = "pkod_00008";
 
 // Partida
 if( isset($_POST['partida_irabazlea']) || isset($_POST['partida_kod']))
@@ -39,28 +44,28 @@ else
 // //             RONDAS
 // //===================================
 
-// if(isset($_POST['ronda_kod']) || isset($_POST['ronda_irabazlea']) || isset($_POST['irabazlearen_puntuazioa']) || isset($_POST['galtzaidearen_puntuazioa']) || isset($_POST['partida_ronda']))
-// { 
-//     $roundCode                          = $_POST['ronda_kod'];
-//     $roundWinner                        = $_POST['ronda_irabazlea'];
-//     $winnerPoints                       = $_POST['irabazlearen_puntuazioa'];
-//     $losserPoints                       = $_POST['galtzaidearen_puntuazioa'];
-//     $gameRound                          = $_POST['partida_ronda'];
-//     $roundSend['error']                 = "";
+if(isset($_POST['ronda_kod']) || isset($_POST['ronda_irabazlea']) || isset($_POST['irabazlearen_puntuazioa']) || isset($_POST['galtzaidearen_puntuazioa']) || isset($_POST['partida_ronda']))
+{ 
+    $roundCode                          = $_POST['ronda_kod'];
+    $roundWinner                        = $_POST['ronda_irabazlea'];
+    $winnerPoints                       = $_POST['irabazlearen_puntuazioa'];
+    $losserPoints                       = $_POST['galtzaidearen_puntuazioa'];
+    $gameRound                          = $_POST['partida_ronda'];
+    $roundSend['error']                 = "";
 
-//     //Añadimos el nuevo objeto a la BD
-//     $returnValue = $user-> updatePlayer($roundCode, $roundWinner, $winnerPoints, $losserPoints, $gameRound);
+    //Añadimos el nuevo objeto a la BD
+    $returnValue = $round-> insertRound($roundCode, $roundWinner, $winnerPoints, $losserPoints, $gameRound);
 
-//     if($returnValue == FALSE)
-//     {
-//         $roundSend['error'] =  "Informacion de ronda enviada";
-//     }
-//     echo json_encode($roundSend);
-// }
-// else
-// {
-//     die("Forbidden");
-// }
+    if($returnValue == FALSE)
+    {
+        $roundSend['error'] =  "Informacion de ronda enviada";
+    }
+    echo json_encode($roundSend);
+}
+else
+{
+    die("Forbidden");
+}
 
 
 
