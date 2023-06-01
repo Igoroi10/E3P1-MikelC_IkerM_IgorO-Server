@@ -17,18 +17,45 @@ if(isset($_POST['partida_kod']) ||  isset($_POST['partida_irabazlea']))
     $gameWinner                     = $_POST['partida_irabazlea'];
     $gameCode                       = $_POST['partida_kod'];
 
-    $gameErrorSend['error']         = "";
+    $gameSend['error']         = "";
 
     //Añadimos el nuevo objeto a la BD
     $returnValue = $gameData-> updatePlayer($gameCode, $gameWinner);
 
     if($returnValue == FALSE)
     {
-        $gameErrorSend['error']     = "Error! Informacion invalida";
+        $gameSend['error']     = "Informacion de juego enviada.";
     }
-    echo json_encode($gameData);
+    echo json_encode($gameSend);
 }
 
+else
+{
+    die("Forbidden");
+}
+
+//===================================
+//             RONDAS
+//===================================
+
+if(isset($_POST['ronda_kod']) || isset($_POST['ronda_irabazlea']) || isset($_POST['irabazlearen_puntuazioa']) || isset($_POST['galtzaidearen_puntuazioa']) || isset($_POST['partida_ronda']))
+{ 
+    $roundCode                          = $_POST['ronda_kod'];
+    $roundWinner                        = $_POST['ronda_irabazlea'];
+    $winnerPoints                       = $_POST['irabazlearen_puntuazioa'];
+    $losserPoints                       = $_POST['galtzaidearen_puntuazioa'];
+    $gameRound                          = $_POST['partida_ronda'];
+    $roundSend['error']                 = "";
+
+    //Añadimos el nuevo objeto a la BD
+    $returnValue = $user-> updatePlayer($roundCode, $roundWinner, $winnerPoints, $losserPoints, $gameRound);
+
+    if($returnValue == FALSE)
+    {
+        $roundSend['error'] =  "Informacion de ronda enviada";
+    }
+    echo json_encode($roundSend);
+}
 else
 {
     die("Forbidden");
