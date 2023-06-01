@@ -356,6 +356,15 @@ class ModelBase extends Conexion
         return $result;
     }
 
+    function insertRound($roundCode, $roundWinner, $winnerPoints, $losserPoints, $gameRound)
+    {
+        $query = "INSERT INTO ronda(ronda_kod, ronda_irabazlea, irabazlearen_puntuazioa, galtzailearen_puntuazioa, partida_ronda) VALUES ('$roundCode', '$roundWinner', '$winnerPoints', '$losserPoints', '$gameRound')";
+
+        $result = $this->conexion->query($query);
+
+        return $result;
+    }
+
 
 
 }
