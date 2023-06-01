@@ -26,4 +26,9 @@
     require_once (__DIR__."/../model/Round.php");
 
     $round = new Round();
+    
+//ROUNDS
+    require_once (__DIR__."/../model/Play.php");
+
+    $play = new Play();
 ?>
