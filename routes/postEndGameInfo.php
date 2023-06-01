@@ -5,21 +5,21 @@ require_once (__DIR__."/../controller/Controller.php");
 //TEST OIST ROUTE QUITAR OISTERIORMENTE
 //ejemplo del update en mysql -> update erabiltzaileak set rol = 'admin' where emaila = 'iker.mendoza@ikasle.aeg.eus';
 
-    $_POST['partida_irabazlea']             = 4; 
-    $_POST['partida_kod']                   = "8";
+    // $_POST['partida_irabazlea']             = 4; 
+    // $_POST['partida_kod']                   = "8";
 
-    // $_POST['newEmaila']        = "igoroi.ocon@ikasle.aeg.eus";   
-    // $_POST['newIzenAbizena']   = "Igor Ocon2";
+    // // $_POST['newEmaila']        = "igoroi.ocon@ikasle.aeg.eus";   
+    // // $_POST['newIzenAbizena']   = "Igor Ocon2";
 
-    $_POST['ronda_kod']                     = "rkod0008_1"; 
-    $_POST['ronda_irabazlea']               = 8;
-    $_POST['irabazlearen_puntuazioa']       = 100;   
-    $_POST['galtzaidearen_puntuazioa']      = 33;
-    $_POST['partida_ronda']                 = "8";
-    // $_POST['partida_ronda']                 = "pkod_00008";
+    // $_POST['ronda_kod']                     = "rkod0008_1"; 
+    // $_POST['ronda_irabazlea']               = 8;
+    // $_POST['irabazlearen_puntuazioa']       = 100;   
+    // $_POST['galtzaidearen_puntuazioa']      = 33;
+    // $_POST['partida_ronda']                 = "8";
+    // // $_POST['partida_ronda']                 = "pkod_00008";
 
-    $_POST['user_jolastu']                  = 8;
-    $_POST['partida_jolastu']               = "8";
+    // $_POST['user_jolastu']                  = 8;
+    // $_POST['partida_jolastu']               = "8";
 
 // Partida
 if( isset($_POST['partida_irabazlea']) || isset($_POST['partida_kod']))
@@ -77,7 +77,7 @@ if(isset($_POST['ronda_irabazlea']) || isset($_POST['irabazlearen_puntuazioa']) 
     $returnValue = $round-> insertRound(2, $roundWinner2, $winnerPoints2, $losserPoints2, $gameRound);
     
     //Sentencia que guarda la tercera ronda en caso de que exista
-    if($winnerPoints3 != "" && $losserPoints3 != "")
+    if($roundWinner3 != "" && $winnerPoints3 != "" && $losserPoints3 != "")
     {
         $returnValue = $round-> insertRound(3, $roundWinner3, $winnerPoints3, $losserPoints3, $gameRound);
     }
