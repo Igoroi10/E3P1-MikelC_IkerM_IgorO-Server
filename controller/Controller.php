@@ -17,4 +17,9 @@
     //Creamos nuestros modelos
     $allUsers = new AllUsers();
 
+// GAME DATA
+    require_once (__DIR__."/../model/GameData.php");
+    
+    $gameData = new GameData();
+
 ?>
